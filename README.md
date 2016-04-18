@@ -1,5 +1,11 @@
 # filebeat-docker
 
+### Logging guidelines
+
+* JSON format rocks.
+* Keep number and unique count of field names to a reasoanable number (do not have keys that will blow up e.g. user id etc.)
+* Log to `/var/log` folder on your machine for all services. You get logrotate for free along with sanity.
+
 ### Quickstart
 
 A default filebeat.yml which collects `/var/log/auth.log` and `/var/log/syslog` from the host is provided inside the container.  
