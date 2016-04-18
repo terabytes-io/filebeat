@@ -1,0 +1,28 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /var/log/host/auth.log
+        - /var/log/host/syslog
+      fields:
+        tb_codec: line
+        token: TOKEN
+      fields_under_root: true
+      ignore_older: 24h
+      document_type: syslog
+  registry_file: /var/log/host/filebeat.registry
+output:
+  logstash:
+    hosts: ["logstash.terabytes.io:5000"]
+    tls:
+      certificate_authorities: ['/opt/filebeat/tb.crt']
+
+logging:
+  to_files: true
+  to_syslog: false
+  files:
+    rotateeverybytes: 10485760 # = 10MB
+    path: /var/log/host
+    name: filebeat.log
+    keepfiles: 7
+  level: info
