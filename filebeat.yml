@@ -7,9 +7,9 @@ filebeat:
       fields:
         tb_codec: line
         token: TOKEN
+        type: syslog
       fields_under_root: true
       ignore_older: 24h
-      document_type: syslog
   registry_file: /var/log/host/filebeat.registry
 output:
   logstash:
